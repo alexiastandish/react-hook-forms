@@ -1,0 +1,126 @@
+{
+    "customBlocks": [
+        {
+            "type": "custom",
+            "id": "custom-block-1",
+            "title": "Alexia's Tapcart block but it has a really long title that is super super long",
+            "variables": [],
+            "resources": [
+                {
+                    "type": "js",
+                    "url": "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+                },
+                {
+                    "type": "js",
+                    "url": "https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"
+                }
+            ],
+            "metadata": {
+                "isTest": false
+            },
+            "previewImageUrl": "https://storage.googleapis.com/tapcart-hacks-assets/Screen%20Shot%202022-06-10%20at%2011.09.53%20AM.png",
+            "urls": {
+                "html": "BiEYnhhzLR/sc7ReMrxeIUpJVR1/index.html"
+            },
+            "status": "Draft",
+            "html": "<h1>Hello World</h1>",
+            "css": "body { color: red }",
+            "js": "const foo = 'bar'",
+            "slugHash": "sc7ReMrxeIUpJVR1",
+            "mobileBlockContexts": ["pdp"],
+            "appActions": [],
+            "createdAt": "1650654605051"
+        },
+        {
+            "type": "custom",
+            "id": "custom-block-2",
+            "title": "Chai's Block",
+            "variables": [],
+            "resources": [
+                {
+                    "type": "js",
+                    "url": "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+                },
+                {
+                    "type": "js",
+                    "url": "https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"
+                }
+            ],
+            "metadata": {
+                "isTest": false
+            },
+            "urls": {
+                "html": "BiEYnhhzLR/sc7ReMrxeIUpJVR1/index.html"
+            },
+            "status": "Draft",
+            "html": "<h1>Hello World</h1>",
+            "css": "body { color: red }",
+            "js": "const foo = 'bar'",
+            "slugHash": "sc7ReMrxeIUpJVR1",
+            "mobileBlockContexts": ["pdp"],
+            "appActions": [],
+            "createdAt": "1650654605051"
+        },
+        {
+            "type": "custom",
+            "id": "custom-block-3",
+            "title": "Some random block",
+            "variables": [],
+            "resources": [
+                {
+                    "type": "js",
+                    "url": "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+                },
+                {
+                    "type": "js",
+                    "url": "https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"
+                }
+            ],
+            "metadata": {
+                "isTest": false
+            },
+            "urls": {
+                "html": "BiEYnhhzLR/sc7ReMrxeIUpJVR1/index.html"
+            },
+            "status": "Draft",
+            "html": "<h1>Hello World</h1>",
+            "css": "body { color: red }",
+            "js": "const foo = 'bar'",
+            "slugHash": "sc7ReMrxeIUpJVR1",
+            "mobileBlockContexts": ["pdp"],
+            "appActions": [],
+            "createdAt": "1650654605051"
+        },
+        {
+            "type": "custom",
+            "id": "custom-block-4",
+            "title": "custom block 4",
+            "variables": [],
+            "resources": [
+                {
+                    "type": "js",
+                    "url": "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+                },
+                {
+                    "type": "js",
+                    "url": "https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"
+                }
+            ],
+            "metadata": {
+                "isTest": false
+            },
+            "previewImageUrl": "https://storage.googleapis.com/tapcart-hacks-assets/Screen%20Shot%202022-06-10%20at%2011.09.53%20AM.png",
+            "urls": {
+                "html": "BiEYnhhzLR/sc7ReMrxeIUpJVR1/index.html"
+            },
+            "status": "Draft",
+            "html": "<h1>Hello World</h1>",
+            "css": "body { color: red }",
+            "js": "const foo = 'bar'",
+            "slugHash": "sc7ReMrxeIUpJVR1",
+            "mobileBlockContexts": ["pdp"],
+            "appActions": [],
+            "createdAt": "1650654605051"
+        }
+    ]
+}
