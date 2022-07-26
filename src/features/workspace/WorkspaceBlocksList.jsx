@@ -23,9 +23,12 @@ function WorkspaceBlocksList({ blocks, append }) {
                                             activeFile: 'html',
                                         })
                                     )
+
                                     append({
                                         key: block.id,
-                                        ...block,
+                                        title: block.title,
+                                        // key: block.id,
+                                        // ...block,
                                     })
                                 }
                             }}

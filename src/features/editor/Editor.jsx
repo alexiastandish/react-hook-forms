@@ -5,16 +5,11 @@ import { selectActiveFile } from './editor-selectors'
 
 const Editor = ({ fields, control, index, register }) => {
     const activeFile = useSelector(selectActiveFile)
-    const {
-        field,
-        fieldState,
-        formState: { dirtyFields, isDirty },
-    } = useController({
+    const { field, fieldState, formState } = useController({
         control,
         name: `projects.${index}`,
     })
-    console.log(' EDITOR isDirty', isDirty)
-    console.log('EDITOR dirtyFields', dirtyFields)
+    console.log('formState', formState)
 
     // const activeCode = register(`projects.${index}.${activeFile}`)
 

@@ -1,6 +1,11 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useForm, useFieldArray, useController } from 'react-hook-form'
+import {
+    useForm,
+    useFieldArray,
+    useController,
+    useWatch,
+} from 'react-hook-form'
 import { selectAllBlocksArray } from 'features/blocks/blocks-selectors'
 import WorkspaceBlocksList from './WorkspaceBlocksList'
 import Projects from 'components/Projects'
@@ -37,53 +42,31 @@ function Workspace() {
         })
         .required()
 
-    const onSubmit = (data) => console.log('data, data', data)
-
-    const { register, control, handleSubmit, setValue } = useForm({
+    const { control, handleSubmit, register } = useForm({
         mode: 'onChange',
-        // defaultValues: {
-        //     projects: useMemo(() => {
-        //         const defaultBlockValues = blocks.filter((block) => {
-        //             return openProjectIds.includes(block.id)
-        //         })
-        //         return defaultBlockValues
-        //     }, [blocks, openProjectIds]),
-        // },
-
-        defaultValues: { projects: [] },
-        resolver: yupResolver(schema),
     })
 
-    const { fields, append, replace, prepend, remove, swap, move, insert } =
-        useFieldArray({
-            control,
-            name: 'projects',
-        })
+    const { fields, append, update, remove } = useFieldArray({
+        control,
+        name: 'projects',
+        defaultValues: {
+            projects: [],
+        },
+    })
+
+    const onSubmit = (data) => console.log('data', data)
 
     useEffect(() => {
         if (openProjectId && !openProjectIds.includes(openProjectId)) {
             dispatch(initEditor(openProjectId)).then((project) => {
                 append({
-                    ...project,
-                    // id: project.id,
+                    title: project.title,
                     key: project.id,
                 })
-
-                // const defaultBlockValues = blocks.filter((block) => {
-                //     console.log('block', block)
-                //     return block.id === openProjectId
-                // })
-
-                // console.log('defaultBlockValues', defaultBlockValues)
-                // setValue(`projects.0`, defaultBlockValues[0], {
-                //     shouldDirty: false,
-                // })
-
-                // register(`projects.${project.id}`)
             })
         }
         return () => {}
-    }, [openProjectId, dispatch, openProjectIds, append])
+    }, [openProjectId, dispatch, openProjectIds])
 
     const openProjectIndex = fields.findIndex(
         (project) => project.key === openProjectId
@@ -94,32 +77,26 @@ function Workspace() {
             <DevTool control={control} placement="top-right" />
 
             {fields.length > 0 ? (
-                <Grid container spacing={2}>
-                    <Grid item xs={8}>
-                        {loaded && (
-                            <>
-                                <ActiveProjectTabs
-                                    openProjectId={openProjectId}
-                                    openProjectIds={openProjectIds}
-                                    fields={fields}
-                                />
-                                <Tabs
-                                    openProjectIndex={openProjectIndex}
-                                    openProjectId={openProjectId}
-                                />
-                                <form onSubmit={handleSubmit(onSubmit)}>
-                                    <Projects
-                                        fields={fields}
+                <Grid>
+                    <form onSubmit={handleSubmit(onSubmit)}>
+                        {fields.map((field, index) => {
+                            console.log('field', field)
+                            return (
+                                <fieldset key={field.id}>
+                                    <Edit
                                         control={control}
-                                        handleSubmit={handleSubmit}
+                                        update={update}
+                                        index={index}
+                                        value={field}
                                         register={register}
-                                        openProjectIndex={openProjectIndex}
                                     />
-                                    <input type="submit" />
-                                </form>
-                            </>
-                        )}
-                    </Grid>
+                                </fieldset>
+                            )
+                        })}
+
+                        <input type="submit" />
+                    </form>
+
                     <Grid item xs={4}>
                         <WorkspaceBlocksList blocks={blocks} append={append} />
                     </Grid>
@@ -140,3 +117,42 @@ function Workspace() {
     )
 }
 export default Workspace
+
+const Edit = ({ register, update, index, value }) => {
+    const { watch, control } = useForm({
+        defaultValues: value,
+    })
+    console.log('value', value)
+
+    return (
+        <div>
+            <Display control={control} index={index} />
+
+            <input {...register(`projects.${index}.title`)} />
+
+            {/* <button
+                type="button"
+                onClick={handleSubmit((data) => {
+                    console.log('MOP', data)
+                    update(index, data)
+                })}
+            >
+                Submit
+            </button> */}
+        </div>
+    )
+}
+
+const Display = ({ control, index }) => {
+    const data = useWatch({
+        control,
+    })
+    console.log('ME', data)
+    if (!data?.title) return null
+
+    return (
+        <div>
+            <p>{data?.title}</p>
+        </div>
+    )
+}

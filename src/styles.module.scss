@@ -1,0 +1,85 @@
+.Container {
+    height: 90%;
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto 10px;
+    flex-direction: row-reverse;
+}
+
+.tableFriends {
+    margin-right: 40px;
+    /* border-collapse: collapse; */
+    border: 2px solid #063f6b;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.tableHeader {
+    background-color: #063f6b;
+    color: white;
+}
+
+.tableTr {
+    border: 2px solid #063f6b;
+    /* border-radius: 10px; */
+}
+
+.tableTr:hover {
+    background-color: #063f6b;
+    opacity: 0.6;
+    color: white;
+}
+
+.form {
+    display: flex;
+    margin: 20px 20px 0px 20px;
+    .input {
+        flex-grow: 1;
+        background: rgba(219, 219, 219, 0.8);
+        color: rgb(61, 61, 61);
+        padding: 0px 0px 0px 8px;
+        height: 30px;
+        border-radius: 4px;
+    }
+    .button {
+        margin: 0px 0px 0px 30px;
+        padding: 0px 20px;
+        background: rgba(192, 192, 192, 0.9);
+        color: rgb(61, 61, 61);
+        height: 30px;
+        border-radius: 4px;
+        &:hover {
+            background: rgba(158, 158, 158, 0.9);
+        }
+    }
+}
+
+.wrapper {
+    width: 100%;
+    height: calc(100% - 4rem);
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    overflow-y: auto;
+    mat-form-field {
+        width: 100%;
+        margin-bottom: 2rem;
+        mat-error {
+            font-style: italic;
+            text-align: right;
+        }
+    }
+    .friends-fields-wrapper {
+        width: 100%;
+        flex: 1;
+    }
+}
+
+.propertyContainer {
+    display: flex;
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+}

@@ -6,6 +6,7 @@ import { Button } from '@mui/material'
 import { v4 as uuidv4 } from 'uuid'
 import { setOpenProjectId } from 'features/projects/projects-slice'
 import { useNavigate } from 'react-router-dom'
+// import Test from 'components/Test'
 
 function Blocks() {
     const blockIds = useSelector(selectBlockIds)
@@ -14,6 +15,7 @@ function Blocks() {
 
     return (
         <div>
+            {/* <Test /> */}
             <h3>Custom Blocks Bank</h3>
             <Button
                 onClick={() => {
