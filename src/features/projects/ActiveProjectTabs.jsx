@@ -5,7 +5,6 @@ import Tabs from '@mui/material/Tabs'
 import Tab from '@mui/material/Tab'
 
 function ActiveProjectTabs({ openProjectIds, openProjectId, fields }) {
-    console.log('fields', fields)
     const dispatch = useDispatch()
 
     const handleSelectTab = (_, id) => {
@@ -17,7 +16,7 @@ function ActiveProjectTabs({ openProjectIds, openProjectId, fields }) {
             {openProjectIds.map((openProjectId, index) => {
                 return (
                     <Tab
-                        label={fields[index].title}
+                        label={fields[index]?.title}
                         key={openProjectId}
                         value={openProjectId}
                     />

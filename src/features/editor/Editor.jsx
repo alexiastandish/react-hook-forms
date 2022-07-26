@@ -3,32 +3,28 @@ import { useController, useWatch } from 'react-hook-form'
 import { useSelector } from 'react-redux'
 import { selectActiveFile } from './editor-selectors'
 
-const Editor = ({ control, index, register }) => {
+const Editor = ({ fields, control, index, register }) => {
     const activeFile = useSelector(selectActiveFile)
-    const { field } = useController({
+    const {
+        field,
+        fieldState,
+        formState: { dirtyFields, isDirty },
+    } = useController({
         control,
-        name: `projects[${index}]`,
+        name: `projects.${index}`,
     })
-    const value = useWatch({
-        control,
-        name: `projects[${index}]`,
-    })
+    console.log(' EDITOR isDirty', isDirty)
+    console.log('EDITOR dirtyFields', dirtyFields)
+
+    // const activeCode = register(`projects.${index}.${activeFile}`)
 
     return (
-        <div>
-            <h3>{value?.title}</h3>
-
-            <input
-                name={`projects[${index}].title`}
-                {...register(`projects[${index}].title`)}
-            />
-            <input
-                name={`projects[${index}].[${activeFile}]`}
-                {...register(`projects[${index}].[${activeFile}]`)}
-            />
+        <>
+            <input {...register(`projects.${index}.title`)} />
+            {/* <input {...activeCode} /> */}
 
             {activeFile}
-        </div>
+        </>
     )
 }
 

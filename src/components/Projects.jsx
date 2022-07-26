@@ -1,5 +1,6 @@
 import Editor from 'features/editor/Editor'
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useController } from 'react-hook-form'
 
 function Projects({
     fields,
@@ -7,24 +8,27 @@ function Projects({
     handleSubmit,
     register,
     openProjectIndex,
-    setValue,
 }) {
-    const onSubmit = (data) => console.log('data, data', data)
     const activeForm = fields[openProjectIndex]
+
+    useEffect(() => {
+        window.onpopstate = function () {
+            window.history.pushState(null, '', window.location.href)
+        }
+        window.history.pushState(null, '', window.location.href)
+        // setAlert({ type: 'unsaved', active: true })
+    }, [window])
 
     return (
         <>
             {activeForm && (
-                <form onSubmit={handleSubmit(onSubmit)}>
-                    <Editor
-                        control={control}
-                        register={register}
-                        key={activeForm.id}
-                        index={openProjectIndex}
-                    />
-
-                    <input type="submit" />
-                </form>
+                <Editor
+                    fields={fields[openProjectIndex]}
+                    control={control}
+                    register={register}
+                    key={activeForm.id}
+                    index={openProjectIndex}
+                />
             )}
         </>
     )

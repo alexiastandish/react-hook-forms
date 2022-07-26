@@ -1,0 +1,20 @@
+{
+    "unsaved": {
+        "header": "Unsaved changes",
+        "subtext": "You have unsaved changes",
+        "actions": [
+            {
+                "label": "Save",
+                "action": "save"
+            },
+            {
+                "label": "Save as new",
+                "action": "duplicate"
+            },
+            {
+                "label": "Discard",
+                "action": "discard"
+            }
+        ]
+    }
+}
