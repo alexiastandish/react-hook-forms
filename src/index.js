@@ -13,13 +13,11 @@ const root = createRoot(container)
 
 store.dispatch(fetchSavedBlocks())
 root.render(
-    <React.StrictMode>
-        <BrowserRouter>
-            <Provider store={store}>
-                <Routes />
-            </Provider>
-        </BrowserRouter>
-    </React.StrictMode>
+    <BrowserRouter>
+        <Provider store={store}>
+            <Routes />
+        </Provider>
+    </BrowserRouter>
 )
 
 // If you want to start measuring performance in your app, pass a function

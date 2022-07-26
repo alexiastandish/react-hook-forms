@@ -1,4 +1,4 @@
-import BasicForm from 'components/BasicForm'
+import Projects from 'components/Projects'
 import Blocks from 'features/blocks/Blocks'
 import Workspace from 'features/workspace/Workspace'
 import { Routes as Router, Route } from 'react-router-dom'
@@ -9,8 +9,7 @@ const Routes = () => {
             <Router>
                 <Route path="/" element={<Blocks />} />
                 <Route path="/workspace" element={<Workspace />} />
-                <Route path="/test-form" element={<BasicForm />} />
-                {/* <Route path="/workspace/:blockId" element={<Workspace />} /> */}
+                <Route path="/test-form" element={<Projects />} />
             </Router>
         </div>
     )

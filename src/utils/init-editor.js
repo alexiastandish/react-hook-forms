@@ -1,14 +1,7 @@
-import {
-    addActiveProjectId,
-    setOpenProjectId,
-} from 'features/workspace/workspace-slice'
+import { projectAddOne } from 'features/projects/projects-slice'
 
 const initEditor = (id) => async (dispatch, getState) => {
-    console.log('id', id)
-    const {
-        blocks,
-        // workspace: { openProjectId },
-    } = getState()
+    const { blocks } = getState()
 
     const blockExists = blocks.entities[id]
 
@@ -29,38 +22,30 @@ const initEditor = (id) => async (dispatch, getState) => {
             }
             return blockWithOrganizedResources.resources.push(resource)
         })
-
-        await dispatch(addActiveProjectId(id))
-
-        return {
-            id,
-            activeFile: 'html',
-            customBlock: blockWithOrganizedResources,
-        }
+        await dispatch(projectAddOne({ id, activeFile: 'html' }))
+        return blockWithOrganizedResources
     }
-    await dispatch(addActiveProjectId(id))
+
+    await dispatch(projectAddOne({ id, activeFile: 'html' }))
 
     return {
+        css: 'body { color: red }',
+        fonts: [],
+        html: '<h1>Hello </h1>',
         id,
-        activeFile: 'html',
-        customBlock: {
-            css: 'body { color: red }',
-            fonts: [],
-            html: '<h1>Hello </h1>',
-            id,
-            js: "const foo = 'bar'",
-            metadata: { isTest: false },
-            mobileBlockContexts: [],
-            previewImageUrl:
-                'https://storage.googleapis.com/tapcart-hacks-assets/Screen%20Shot%202022-06-10%20at%2011.09.53%20AM.png',
-            resources: [],
-            slugHash: id,
-            status: 'Draft',
-            title: '',
-            type: 'custom',
-            urls: { html: 'BiEYnhhzLR/sc7ReMrxeIUpJVR1/index.html' },
-            variables: [],
-        },
+        key: id,
+        js: "const foo = 'bar'",
+        metadata: { isTest: false },
+        mobileBlockContexts: [],
+        previewImageUrl:
+            'https://storage.googleapis.com/tapcart-hacks-assets/Screen%20Shot%202022-06-10%20at%2011.09.53%20AM.png',
+        resources: [],
+        slugHash: id,
+        status: 'Draft',
+        title: 'new custom block',
+        type: 'custom',
+        urls: { html: 'BiEYnhhzLR/sc7ReMrxeIUpJVR1/index.html' },
+        variables: [],
     }
 }
 

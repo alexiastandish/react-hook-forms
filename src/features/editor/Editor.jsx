@@ -1,12 +1,10 @@
 import React from 'react'
-import {
-    useForm,
-    useController,
-    useFieldArray,
-    useWatch,
-} from 'react-hook-form'
+import { useController, useWatch } from 'react-hook-form'
+import { useSelector } from 'react-redux'
+import { selectActiveFile } from './editor-selectors'
 
-const Editor = ({ control, index, register, active }) => {
+const Editor = ({ control, index, register }) => {
+    const activeFile = useSelector(selectActiveFile)
     const { field } = useController({
         control,
         name: `projects[${index}]`,
@@ -17,28 +15,19 @@ const Editor = ({ control, index, register, active }) => {
     })
 
     return (
-        <div
-            style={{
-                border: active ? '1px solid blue' : '1px solid transparent',
-            }}
-        >
-            <h3>
-                {active && <span>ACTIVE</span>}
-                {value?.customBlock?.title}
-            </h3>
+        <div>
+            <h3>{value?.title}</h3>
 
             <input
-                name={`projects[${index}].customBlock.title`}
-                {...register(`projects[${index}].customBlock.title`)}
+                name={`projects[${index}].title`}
+                {...register(`projects[${index}].title`)}
             />
             <input
-                name={field.value.activeFile}
-                {...register(
-                    `projects[${index}].customBlock[${value.activeFile}]`
-                )}
+                name={`projects[${index}].[${activeFile}]`}
+                {...register(`projects[${index}].[${activeFile}]`)}
             />
 
-            {value.activeFile}
+            {activeFile}
         </div>
     )
 }
