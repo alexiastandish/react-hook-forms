@@ -5,9 +5,17 @@ const projectsSelector = projectsAdapter.getSelectors(
     (state) => state?.workspace?.projects ?? null
 )
 
-const { selectIds: selectProjectIds, selectEntities: selectProjectEntities } =
-    projectsSelector
+const {
+    selectIds: selectProjectIds,
+    selectEntities: selectProjectEntities,
+    selectAll: selectAllProjects,
+} = projectsSelector
 
 const selectOpenProjectId = (state) => state.workspace.projects.openProjectId
 
-export { selectProjectIds, selectOpenProjectId, selectProjectEntities }
+export {
+    selectProjectIds,
+    selectOpenProjectId,
+    selectProjectEntities,
+    selectAllProjects,
+}

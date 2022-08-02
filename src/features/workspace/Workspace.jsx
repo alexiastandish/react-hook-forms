@@ -1,24 +1,23 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import {
-    useForm,
-    useFieldArray,
-    useController,
-    useWatch,
-} from 'react-hook-form'
-import { selectAllBlocksArray } from 'features/blocks/blocks-selectors'
-import WorkspaceBlocksList from './WorkspaceBlocksList'
-import Projects from 'components/Projects'
+import { useForm, useWatch } from 'react-hook-form'
+import { selectBlockEntities } from 'features/blocks/blocks-selectors'
 import initEditor from 'utils/init-editor'
+import { Tabs as StyledTabs } from '@mui/material'
+import Tab from '@mui/material/Tab'
 import Tabs from 'components/Tabs'
-import ActiveProjectTabs from 'features/projects/ActiveProjectTabs'
 import Box from '@mui/material/Box'
-import Grid from '@mui/material/Grid'
 import modalAlerts from 'constants/modal-alerts.json'
 import AlertModal from 'components/AlertModal'
-import * as yup from 'yup'
-import { yupResolver } from '@hookform/resolvers/yup'
+// import * as yup from 'yup'
+// import { yupResolver } from '@hookform/resolvers/yup'
 import { DevTool } from '@hookform/devtools'
+import {
+    selectAllProjects,
+    selectProjectEntities,
+} from 'features/projects/projects-selectors'
+import { setOpenProjectId } from 'features/projects/projects-slice'
+import defaultValues from 'constants/default-block-state.json'
 
 function Workspace() {
     const [alert, setAlert] = useState({ type: null, active: false })
@@ -26,84 +25,111 @@ function Workspace() {
     const openProjectId = useSelector(
         (state) => state.workspace.projects.openProjectId
     )
-    const loaded = useSelector(
-        (state) => state.workspace.projects.openProjectId
-    )
+
     const openProjectIds = useSelector((state) => state.workspace.projects.ids)
 
-    const blocks = useSelector(selectAllBlocksArray)
+    const blockEntities = useSelector(selectBlockEntities)
+    const projectEntities = useSelector(selectProjectEntities)
+    const projects = useSelector(selectAllProjects)
 
     const dispatch = useDispatch()
 
-    const schema = yup
-        .object()
-        .shape({
-            title: yup.string().required(),
-        })
-        .required()
-
-    const { control, handleSubmit, register } = useForm({
-        mode: 'onChange',
-    })
-
-    const { fields, append, update, remove } = useFieldArray({
+    const {
         control,
+        register,
+        resetField,
+        getValues,
+        handleSubmit,
+        formState,
+    } = useForm({
+        mode: 'onChange',
         name: 'projects',
-        defaultValues: {
-            projects: [],
-        },
+        defaultValues: { projects: {} },
     })
+
+    const { isDirty, dirtyFields } = formState
+    console.log('isDirty', isDirty)
+    console.log('dirtyFields', dirtyFields)
 
     const onSubmit = (data) => console.log('data', data)
 
     useEffect(() => {
         if (openProjectId && !openProjectIds.includes(openProjectId)) {
             dispatch(initEditor(openProjectId)).then((project) => {
-                append({
-                    title: project.title,
-                    key: project.id,
+                const blockExists = blockEntities[project.id] || {
+                    ...defaultValues,
+                    id: project.id,
+                }
+
+                return resetField(`projects.${project.id}`, {
+                    defaultValue: { ...blockExists },
+                    keepDirty: true,
+                    keepTouched: true,
+                    keepError: true,
                 })
             })
         }
         return () => {}
     }, [openProjectId, dispatch, openProjectIds])
 
-    const openProjectIndex = fields.findIndex(
-        (project) => project.key === openProjectId
-    )
+    const values = getValues()
+
+    const handleSelectTab = (_, id) => {
+        dispatch(setOpenProjectId(id))
+    }
+
+    useWatch({ name: `projects.${openProjectId}`, control })
+
+    const openProjectIndex = projects.findIndex((proj) => {
+        return proj.id === openProjectId
+    })
+    const activeFileType =
+        openProjectId &&
+        projectEntities[`${openProjectId}`] &&
+        projectEntities[`${openProjectId}`].activeFile
 
     return (
         <Box sx={{ flexGrow: 1 }}>
             <DevTool control={control} placement="top-right" />
 
-            {fields.length > 0 ? (
-                <Grid>
-                    <form onSubmit={handleSubmit(onSubmit)}>
-                        {fields.map((field, index) => {
-                            console.log('field', field)
+            <StyledTabs onChange={handleSelectTab} value={openProjectId}>
+                {openProjectIds.includes(openProjectId) &&
+                    openProjectIds.map((projectId) => {
+                        if (openProjectIds.includes(projectId)) {
                             return (
-                                <fieldset key={field.id}>
-                                    <Edit
-                                        control={control}
-                                        update={update}
-                                        index={index}
-                                        value={field}
-                                        register={register}
-                                    />
-                                </fieldset>
+                                <Tab
+                                    label={
+                                        values?.projects[`${projectId}`]
+                                            ?.title || 'Untitled'
+                                    }
+                                    key={projectId}
+                                    value={projectId}
+                                />
                             )
-                        })}
+                        }
+                        return null
+                    })}
+            </StyledTabs>
 
-                        <input type="submit" />
-                    </form>
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <input
+                    key={`projects.${openProjectId}.title`}
+                    {...register(`projects.${openProjectId}.title`)}
+                />
+                <input
+                    key={`projects.${openProjectId}.${activeFileType}`}
+                    {...register(`projects.${openProjectId}.${activeFileType}`)}
+                />
+                <input type="submit" />
+            </form>
 
-                    <Grid item xs={4}>
-                        <WorkspaceBlocksList blocks={blocks} append={append} />
-                    </Grid>
-                </Grid>
-            ) : (
-                <div>loading</div>
+            {openProjectIds.includes(openProjectId) && (
+                <Tabs
+                    openProjectIndex={openProjectIndex}
+                    openProjectId={openProjectId}
+                />
             )}
+
             {alert.active && (
                 <AlertModal
                     open={alert.active}
@@ -117,42 +143,3 @@ function Workspace() {
     )
 }
 export default Workspace
-
-const Edit = ({ register, update, index, value }) => {
-    const { watch, control } = useForm({
-        defaultValues: value,
-    })
-    console.log('value', value)
-
-    return (
-        <div>
-            <Display control={control} index={index} />
-
-            <input {...register(`projects.${index}.title`)} />
-
-            {/* <button
-                type="button"
-                onClick={handleSubmit((data) => {
-                    console.log('MOP', data)
-                    update(index, data)
-                })}
-            >
-                Submit
-            </button> */}
-        </div>
-    )
-}
-
-const Display = ({ control, index }) => {
-    const data = useWatch({
-        control,
-    })
-    console.log('ME', data)
-    if (!data?.title) return null
-
-    return (
-        <div>
-            <p>{data?.title}</p>
-        </div>
-    )
-}

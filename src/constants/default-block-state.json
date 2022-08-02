@@ -1,0 +1,17 @@
+{
+    "type": "custom",
+    "id": "",
+    "title": "",
+    "variables": [],
+    "resources": [],
+    "metadata": { "isTest": false },
+    "previewImageUrl": "",
+    "urls": { "html": "" },
+    "status": "Draft",
+    "html": "<div></div>",
+    "css": "body { color: blue }",
+    "js": "const foo = 'new'",
+    "slugHash": "",
+    "mobileBlockContexts": [""],
+    "appActions": []
+}
