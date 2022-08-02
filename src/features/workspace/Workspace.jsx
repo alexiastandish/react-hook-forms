@@ -18,6 +18,13 @@ import {
 } from 'features/projects/projects-selectors'
 import { setOpenProjectId } from 'features/projects/projects-slice'
 import defaultValues from 'constants/default-block-state.json'
+import Header from 'components/Header'
+import {
+    saveBlock,
+    // saveBlock,
+    saveNewBlock,
+    updateBlock,
+} from 'features/blocks/blocks-slice'
 
 function Workspace() {
     const [alert, setAlert] = useState({ type: null, active: false })
@@ -25,6 +32,8 @@ function Workspace() {
     const openProjectId = useSelector(
         (state) => state.workspace.projects.openProjectId
     )
+
+    const blocks = useSelector((state) => state.blocks)
 
     const openProjectIds = useSelector((state) => state.workspace.projects.ids)
 
@@ -41,6 +50,7 @@ function Workspace() {
         getValues,
         handleSubmit,
         formState,
+        reset,
     } = useForm({
         mode: 'onChange',
         name: 'projects',
@@ -51,7 +61,31 @@ function Workspace() {
     console.log('isDirty', isDirty)
     console.log('dirtyFields', dirtyFields)
 
-    const onSubmit = (data) => console.log('data', data)
+    const onSubmit = async (data) => {
+        const submitBlock = data.projects[openProjectId]
+
+        const blockExists = blockEntities[openProjectId]
+        if (blockExists) {
+            return dispatch(updateBlock(submitBlock)).then((res) => {
+                const fieldValues = getValues()
+                return reset({
+                    projects: {
+                        ...fieldValues.projects,
+                        [res.payload.id]: res.payload.block,
+                    },
+                })
+            })
+        }
+        return dispatch(saveBlock(submitBlock)).then((res) => {
+            const fieldValues = getValues()
+            return reset({
+                projects: {
+                    ...fieldValues.projects,
+                    [res.payload.id]: res.payload.block,
+                },
+            })
+        })
+    }
 
     useEffect(() => {
         if (openProjectId && !openProjectIds.includes(openProjectId)) {
@@ -60,7 +94,6 @@ function Workspace() {
                     ...defaultValues,
                     id: project.id,
                 }
-
                 return resetField(`projects.${project.id}`, {
                     defaultValue: { ...blockExists },
                     keepDirty: true,
@@ -73,6 +106,7 @@ function Workspace() {
     }, [openProjectId, dispatch, openProjectIds])
 
     const values = getValues()
+    console.log('values', values)
 
     const handleSelectTab = (_, id) => {
         dispatch(setOpenProjectId(id))
@@ -91,7 +125,7 @@ function Workspace() {
     return (
         <Box sx={{ flexGrow: 1 }}>
             <DevTool control={control} placement="top-right" />
-
+            <Header isDirty={isDirty} setAlert={setAlert} />
             <StyledTabs onChange={handleSelectTab} value={openProjectId}>
                 {openProjectIds.includes(openProjectId) &&
                     openProjectIds.map((projectId) => {
@@ -120,6 +154,7 @@ function Workspace() {
                     key={`projects.${openProjectId}.${activeFileType}`}
                     {...register(`projects.${openProjectId}.${activeFileType}`)}
                 />
+                {openProjectId}
                 <input type="submit" />
             </form>
 
@@ -137,6 +172,8 @@ function Workspace() {
                     subtext={modalAlerts[alert.type].subtext}
                     actions={modalAlerts[alert.type].actions}
                     setAlert={setAlert}
+                    values={values}
+                    value={values.projects[`${openProjectId}`]}
                 />
             )}
         </Box>

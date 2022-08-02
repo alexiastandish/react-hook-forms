@@ -1,6 +1,8 @@
 import blocksAdapter from './blocks-adapter'
 
-const blocksSelectors = blocksAdapter.getSelectors((state) => state.blocks)
+const blocksSelectors = blocksAdapter.getSelectors(
+    (state) => state?.blocks ?? null
+)
 
 const {
     selectEntities: selectBlockEntities,

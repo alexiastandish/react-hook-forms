@@ -9,6 +9,7 @@ const projectsSlice = createSlice({
     reducers: {
         projectAddOne: projectsAdapter.addOne,
         projectUpdateOne: projectsAdapter.updateOne,
+        projectsRemoveAll: projectsAdapter.removeAll,
         setOpenProjectId: (state, action) => {
             state.openProjectId = action.payload
         },
@@ -23,6 +24,7 @@ export const {
     projectUpdateOne,
     setOpenProjectId,
     setActiveFileInProject,
+    projectsRemoveAll,
 } = projectsSlice.actions
 
 export default projectsSlice.reducer

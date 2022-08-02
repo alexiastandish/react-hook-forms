@@ -10,7 +10,6 @@ import { setOpenProjectId } from 'features/projects/projects-slice'
 
 const Routes = () => {
     const dispatch = useDispatch()
-    const state = useSelector((state) => console.log('state', state))
     const navigate = useNavigate()
 
     return (

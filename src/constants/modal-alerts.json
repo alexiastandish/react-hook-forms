@@ -5,7 +5,7 @@
         "actions": [
             {
                 "label": "Save",
-                "action": "save"
+                "action": "blocks/saveBlock"
             },
             {
                 "label": "Save as new",

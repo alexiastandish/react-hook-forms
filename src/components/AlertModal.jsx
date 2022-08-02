@@ -3,8 +3,20 @@ import Modal from '@mui/material/Modal'
 import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
+import { useDispatch } from 'react-redux'
 
-function AlertModal({ open, setAlert, header, subtext, actions }) {
+function AlertModal({
+    open,
+    values,
+    value,
+    setAlert,
+    header,
+    subtext,
+    actions,
+}) {
+    console.log('values', values)
+    console.log('value', value)
+    const dispatch = useDispatch()
     const style = {
         position: 'absolute',
         top: '50%',
@@ -15,6 +27,14 @@ function AlertModal({ open, setAlert, header, subtext, actions }) {
         border: '2px solid #000',
         boxShadow: 24,
         p: 4,
+    }
+
+    const handleAction = (action) => {
+        console.log('action', action)
+        dispatch({ type: action, payload: value })
+        // switch(action){
+        //     case ''
+        // }
     }
 
     return (
@@ -32,7 +52,14 @@ function AlertModal({ open, setAlert, header, subtext, actions }) {
                     {subtext}
                 </Typography>
                 {actions.map((action) => {
-                    return <Button>{action.label}</Button>
+                    return (
+                        <Button
+                            key={action.label}
+                            onClick={() => handleAction(action.action)}
+                        >
+                            {action.label}
+                        </Button>
+                    )
                 })}
             </Box>
         </Modal>
