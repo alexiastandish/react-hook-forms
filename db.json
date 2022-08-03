@@ -418,6 +418,29 @@
         ""
       ],
       "appActions": []
+    },
+    {
+      "type": "custom",
+      "id": "c8fb76e4-1561-410a-a243-e04f1aa380c7",
+      "title": "",
+      "variables": [],
+      "resources": [],
+      "metadata": {
+        "isTest": false
+      },
+      "previewImageUrl": "",
+      "urls": {
+        "html": ""
+      },
+      "status": "Draft",
+      "html": "<div></div>",
+      "css": "body { color: blue }",
+      "js": "const foo = 'new'",
+      "slugHash": "",
+      "mobileBlockContexts": [
+        ""
+      ],
+      "appActions": []
     }
   ]
 }

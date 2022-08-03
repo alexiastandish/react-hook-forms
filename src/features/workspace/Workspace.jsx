@@ -106,7 +106,6 @@ function Workspace() {
     }, [openProjectId, dispatch, openProjectIds])
 
     const values = getValues()
-    console.log('values', values)
 
     const handleSelectTab = (_, id) => {
         dispatch(setOpenProjectId(id))
