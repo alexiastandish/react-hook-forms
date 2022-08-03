@@ -1,27 +1,3 @@
 {
-  "customBlocks": [
-    {
-      "type": "custom",
-      "id": "02b37ae8-f4c2-4d0e-8b7e-7b61abcf6db7",
-      "title": "test",
-      "variables": [],
-      "resources": [],
-      "metadata": {
-        "isTest": false
-      },
-      "previewImageUrl": "",
-      "urls": {
-        "html": ""
-      },
-      "status": "Draft",
-      "html": "<div></div>",
-      "css": "body { color: blue }",
-      "js": "const foo = 'new'",
-      "slugHash": "",
-      "mobileBlockContexts": [
-        ""
-      ],
-      "appActions": []
-    }
-  ]
+    "customBlocks": []
 }

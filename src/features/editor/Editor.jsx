@@ -9,7 +9,6 @@ const Editor = ({ fields, control, index, register }) => {
         control,
         name: `projects.${index}`,
     })
-    console.log('formState', formState)
 
     // const activeCode = register(`projects.${index}.${activeFile}`)
 

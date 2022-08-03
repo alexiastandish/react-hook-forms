@@ -20,12 +20,8 @@ import {
 import { setOpenProjectId } from 'features/projects/projects-slice'
 import defaultValues from 'constants/default-block-state.json'
 import Header from 'components/Header'
-import {
-    saveBlock,
-    // saveBlock,
-    saveNewBlock,
-    updateBlock,
-} from 'features/blocks/blocks-slice'
+
+import saveBlockAndUpdateProject from 'thunks/saveBlockAndUpdateProject'
 
 function Workspace() {
     const [alert, setAlert] = useState({ type: null, active: false })
@@ -33,8 +29,6 @@ function Workspace() {
     const openProjectId = useSelector(
         (state) => state.workspace.projects.openProjectId
     )
-
-    const blocks = useSelector((state) => state.blocks)
 
     const openProjectIds = useSelector((state) => state.workspace.projects.ids)
 
@@ -51,45 +45,22 @@ function Workspace() {
         getValues,
         handleSubmit,
         formState,
-        reset,
     } = useForm({
         mode: 'onChange',
         name: 'projects',
         defaultValues: { projects: {} },
     })
 
-    const { isDirty, dirtyFields } = formState
-    console.log('isDirty', isDirty)
-    console.log('dirtyFields', dirtyFields)
+    const { isDirty } = formState
+
+    const values = getValues()
 
     const onSubmit = async (data) => {
-        const submitBlock = data.projects[openProjectId]
-
-        const blockExists = blockEntities[openProjectId]
-        if (blockExists) {
-            return dispatch(updateBlock(submitBlock)).then((res) => {
-                const fieldValues = getValues()
-                return reset({
-                    projects: {
-                        ...fieldValues.projects,
-                        [res.payload.id]: res.payload.block,
-                    },
-                })
-            })
-        }
-        return dispatch(saveBlock(submitBlock)).then((res) => {
-            const fieldValues = getValues()
-            return reset({
-                projects: {
-                    ...fieldValues.projects,
-                    [res.payload.id]: res.payload.block,
-                },
-            })
-        })
+        const submitProject = data.projects[openProjectId]
+        dispatch(saveBlockAndUpdateProject(submitProject))
     }
 
     useEffect(() => {
-        console.log('hi', openProjectId)
         if (openProjectId && !openProjectIds.includes(openProjectId)) {
             dispatch(initEditor(openProjectId)).then((project) => {
                 const blockExists = blockEntities[project.id] || {
@@ -109,8 +80,6 @@ function Workspace() {
         }
         return () => {}
     }, [openProjectId, dispatch, openProjectIds])
-
-    const values = getValues()
 
     const handleSelectTab = (_, id) => {
         dispatch(setOpenProjectId(id))

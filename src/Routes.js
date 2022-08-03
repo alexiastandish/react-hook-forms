@@ -5,7 +5,7 @@ import { Routes as Router, Route } from 'react-router-dom'
 import { v4 as uuidv4 } from 'uuid'
 import { useNavigate } from 'react-router-dom'
 import { Button } from '@mui/material'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { setOpenProjectId } from 'features/projects/projects-slice'
 
 const Routes = () => {
