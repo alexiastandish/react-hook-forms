@@ -9,6 +9,7 @@ import Tabs from 'components/Tabs'
 import Box from '@mui/material/Box'
 import modalAlerts from 'constants/modal-alerts.json'
 import AlertModal from 'components/AlertModal'
+import { v4 as uuidv4 } from 'uuid'
 // import * as yup from 'yup'
 // import { yupResolver } from '@hookform/resolvers/yup'
 import { DevTool } from '@hookform/devtools'
@@ -88,6 +89,7 @@ function Workspace() {
     }
 
     useEffect(() => {
+        console.log('hi', openProjectId)
         if (openProjectId && !openProjectIds.includes(openProjectId)) {
             dispatch(initEditor(openProjectId)).then((project) => {
                 const blockExists = blockEntities[project.id] || {
@@ -102,6 +104,9 @@ function Workspace() {
                 })
             })
         }
+        if (!openProjectId) {
+            dispatch(setOpenProjectId(uuidv4()))
+        }
         return () => {}
     }, [openProjectId, dispatch, openProjectIds])
 
@@ -111,7 +116,7 @@ function Workspace() {
         dispatch(setOpenProjectId(id))
     }
 
-    useWatch({ name: `projects.${openProjectId}`, control })
+    const results = useWatch({ name: `projects.${openProjectId}`, control })
 
     const openProjectIndex = projects.findIndex((proj) => {
         return proj.id === openProjectId
@@ -131,10 +136,7 @@ function Workspace() {
                         if (openProjectIds.includes(projectId)) {
                             return (
                                 <Tab
-                                    label={
-                                        values?.projects[`${projectId}`]
-                                            ?.title || 'Untitled'
-                                    }
+                                    label={results?.title || 'Untitled'}
                                     key={projectId}
                                     value={projectId}
                                 />
