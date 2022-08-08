@@ -14,8 +14,6 @@ function AlertModal({
     subtext,
     actions,
 }) {
-    console.log('values', values)
-    console.log('value', value)
     const dispatch = useDispatch()
     const style = {
         position: 'absolute',
@@ -30,11 +28,7 @@ function AlertModal({
     }
 
     const handleAction = (action) => {
-        console.log('action', action)
         dispatch({ type: action, payload: value })
-        // switch(action){
-        //     case ''
-        // }
     }
 
     return (

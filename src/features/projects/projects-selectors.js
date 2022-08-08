@@ -13,9 +13,17 @@ const {
 
 const selectOpenProjectId = (state) => state.workspace.projects.openProjectId
 
+const selectActiveFile = createSelector(
+    [selectProjectEntities, selectOpenProjectId],
+    (projects, openId) => {
+        return projects[openId].activeFile
+    }
+)
+
 export {
     selectProjectIds,
     selectOpenProjectId,
     selectProjectEntities,
     selectAllProjects,
+    selectActiveFile,
 }

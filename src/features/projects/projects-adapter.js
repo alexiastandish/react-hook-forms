@@ -6,6 +6,15 @@ import { createEntityAdapter } from '@reduxjs/toolkit'
 
 const projectsAdapter = createEntityAdapter({
     selectId: (block) => block.id,
+    sortComparer: (a, b) => {
+        if (a.index < b.index) {
+            return -1
+        }
+        if (a.index > b.index) {
+            return 1
+        }
+        return 0
+    },
 })
 
 export default projectsAdapter

@@ -1,9 +1,18 @@
 import { projectAddOne } from 'features/projects/projects-slice'
 
 const initEditor = (id) => async (dispatch, getState) => {
-    const { blocks } = getState()
+    const {
+        blocks,
+        workspace: {
+            projects: { openProjectId, ids },
+        },
+    } = getState()
 
     const blockExists = blocks.entities[id]
+
+    if (ids.includes(openProjectId)) {
+        return
+    }
 
     if (blockExists) {
         // When custom blocks data is fetched from the database, libraries and fonts are grouped together under resources
@@ -22,11 +31,14 @@ const initEditor = (id) => async (dispatch, getState) => {
             }
             return blockWithOrganizedResources.resources.push(resource)
         })
-        await dispatch(projectAddOne({ id, activeFile: 'html' }))
+
+        await dispatch(
+            projectAddOne({ id, activeFile: 'html', index: ids.length })
+        )
         return blockWithOrganizedResources
     }
 
-    await dispatch(projectAddOne({ id, activeFile: 'html' }))
+    await dispatch(projectAddOne({ id, activeFile: 'html', index: ids.length }))
 
     return {
         css: 'body { color: red }',

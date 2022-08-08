@@ -16,7 +16,7 @@ function Block({ id }) {
                 return navigate('workspace')
             }}
         >
-            {block.id}
+            {block.title} - {block.id}
         </div>
     )
 }
