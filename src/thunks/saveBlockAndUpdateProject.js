@@ -25,11 +25,7 @@ const saveBlockAndUpdateProject =
                 blockUpdateOne({ id: updatedBlock.id, changes: updatedBlock })
             )
 
-            return reset(values, {
-                keepDirty: false,
-                keepTouched: false,
-                keepError: false,
-            })
+            return values
         }
 
         // if project id does not exist in blocks, call save new block
@@ -57,11 +53,7 @@ const saveBlockAndUpdateProject =
                 })
             )
 
-            return reset(updatedValues, {
-                keepDirty: false,
-                keepTouched: false,
-                keepError: false,
-            })
+            return updatedValues
         } catch (error) {
             console.log('error', error)
         }

@@ -60,9 +60,17 @@ function Workspace() {
     const { isDirty } = formState
 
     const values = getValues()
+
     const onSubmit = async (data) => {
         const submitProject = data.projects[openProjectId]
-        dispatch(saveBlockAndUpdateProject(submitProject, values, reset))
+        const response = await dispatch(
+            saveBlockAndUpdateProject(submitProject, values)
+        )
+        return reset(response, {
+            keepDirty: false,
+            keepTouched: false,
+            keepError: false,
+        })
     }
 
     const fieldIds = Object.keys(values.projects)

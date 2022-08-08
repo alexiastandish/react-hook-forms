@@ -2,8 +2,8 @@
   "customBlocks": [
     {
       "type": "custom",
-      "id": "79e6257d-1fd7-4031-b500-73b0479938a8",
-      "title": "",
+      "id": "78a8b68b-4fad-4851-9d8e-01f1e59252e0",
+      "title": "block1",
       "variables": [],
       "resources": [],
       "metadata": {
@@ -25,8 +25,8 @@
     },
     {
       "type": "custom",
-      "id": "55a59d47-cf30-4ca4-b121-e748851565fe",
-      "title": "",
+      "id": "90037de3-14c6-4c7f-848d-8335047d09ac",
+      "title": "block 2",
       "variables": [],
       "resources": [],
       "metadata": {
@@ -48,31 +48,8 @@
     },
     {
       "type": "custom",
-      "id": "04a3455c-090a-46af-b48d-71cf8a48c299",
-      "title": "",
-      "variables": [],
-      "resources": [],
-      "metadata": {
-        "isTest": false
-      },
-      "previewImageUrl": "",
-      "urls": {
-        "html": ""
-      },
-      "status": "Draft",
-      "html": "<div></div>",
-      "css": "body { color: red }",
-      "js": "const foo = 'new'",
-      "slugHash": "",
-      "mobileBlockContexts": [
-        ""
-      ],
-      "appActions": []
-    },
-    {
-      "type": "custom",
-      "id": "bcfbd5f7-7ada-4ff4-b78a-30a58cd51dac",
-      "title": "tsttttttt",
+      "id": "f41f21b9-1240-4117-8396-be9bfcc962ae",
+      "title": "block 3",
       "variables": [],
       "resources": [],
       "metadata": {
