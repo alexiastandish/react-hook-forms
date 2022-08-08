@@ -5,7 +5,21 @@
         "actions": [
             {
                 "label": "Save",
-                "action": "blocks/saveBlock"
+                "actions": ["blocks/blockAddOne"]
+            },
+            {
+                "label": "Discard",
+                "action": "discard"
+            }
+        ]
+    },
+    "blockIsLive": {
+        "header": "Custom block is live",
+        "subtext": "You have unsaved changes",
+        "actions": [
+            {
+                "label": "Save",
+                "actions": ["blocks/blockAddOne"]
             },
             {
                 "label": "Save as new",

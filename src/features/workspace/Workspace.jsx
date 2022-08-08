@@ -168,8 +168,9 @@ function Workspace() {
                     subtext={modalAlerts[alert.type].subtext}
                     actions={modalAlerts[alert.type].actions}
                     setAlert={setAlert}
-                    // values={values}
-                    // value={values.projects[`${openProjectId}`]}
+                    openProjectId={openProjectId}
+                    values={values}
+                    reset={reset}
                 />
             )}
         </Box>

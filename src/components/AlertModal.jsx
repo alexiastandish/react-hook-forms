@@ -3,7 +3,12 @@ import Modal from '@mui/material/Modal'
 import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+    selectDirtyProjects,
+    selectProjectEntities,
+} from 'features/projects/projects-selectors'
+import removeProjectAndField from 'thunks/removeProjectAndField'
 
 function AlertModal({
     open,
@@ -13,8 +18,11 @@ function AlertModal({
     header,
     subtext,
     actions,
+    openProjectId,
+    reset,
 }) {
     const dispatch = useDispatch()
+
     const style = {
         position: 'absolute',
         top: '50%',
@@ -28,7 +36,17 @@ function AlertModal({
     }
 
     const handleAction = (action) => {
-        dispatch({ type: action, payload: value })
+        console.log('action', action)
+        console.log('value', values)
+
+        dispatch({
+            type: action[0],
+            payload: { ...values.projects[openProjectId] },
+        })
+
+        dispatch(removeProjectAndField(openProjectId, values, reset))
+
+        setAlert({ active: false, type: null })
     }
 
     return (
@@ -49,7 +67,7 @@ function AlertModal({
                     return (
                         <Button
                             key={action.label}
-                            onClick={() => handleAction(action.action)}
+                            onClick={() => handleAction(action.actions)}
                         >
                             {action.label}
                         </Button>

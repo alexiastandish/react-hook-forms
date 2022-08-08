@@ -1,7 +1,5 @@
 import {
-    projectRemoveOne,
     projectsSetAll,
-    projectsUpdateMany,
     setOpenProjectId,
 } from 'features/projects/projects-slice'
 import getResetIndex from 'utils/get-reset-index'

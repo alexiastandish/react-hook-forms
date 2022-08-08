@@ -2,76 +2,7 @@
   "customBlocks": [
     {
       "type": "custom",
-      "id": "f4573338-c457-4e39-8eca-1eef2048b025",
-      "title": "block 1 updated",
-      "variables": [],
-      "resources": [],
-      "metadata": {
-        "isTest": false
-      },
-      "previewImageUrl": "",
-      "urls": {
-        "html": ""
-      },
-      "status": "Draft",
-      "html": "<div>block 1</div>",
-      "css": "body { color: blue }",
-      "js": "const foo = 'new'",
-      "slugHash": "",
-      "mobileBlockContexts": [
-        ""
-      ],
-      "appActions": []
-    },
-    {
-      "type": "custom",
-      "id": "c06714ca-eac4-41b3-89d3-160699e6f15b",
-      "title": "block 2",
-      "variables": [],
-      "resources": [],
-      "metadata": {
-        "isTest": false
-      },
-      "previewImageUrl": "",
-      "urls": {
-        "html": ""
-      },
-      "status": "Draft",
-      "html": "<div></div>",
-      "css": "body { color: blue }",
-      "js": "const foo = 'new'",
-      "slugHash": "",
-      "mobileBlockContexts": [
-        ""
-      ],
-      "appActions": []
-    },
-    {
-      "type": "custom",
-      "id": "12092db4-8708-4e70-aa57-571b6a3d227e",
-      "title": "block 3",
-      "variables": [],
-      "resources": [],
-      "metadata": {
-        "isTest": false
-      },
-      "previewImageUrl": "",
-      "urls": {
-        "html": ""
-      },
-      "status": "Draft",
-      "html": "<div></div>",
-      "css": "body { color: blue }",
-      "js": "const foo = 'new'",
-      "slugHash": "",
-      "mobileBlockContexts": [
-        ""
-      ],
-      "appActions": []
-    },
-    {
-      "type": "custom",
-      "id": "e25c5441-ed47-42d1-8017-87dba9d7dc0f",
+      "id": "79e6257d-1fd7-4031-b500-73b0479938a8",
       "title": "",
       "variables": [],
       "resources": [],
@@ -94,7 +25,7 @@
     },
     {
       "type": "custom",
-      "id": "f0345d10-db18-434a-af0d-346653587a3b",
+      "id": "55a59d47-cf30-4ca4-b121-e748851565fe",
       "title": "",
       "variables": [],
       "resources": [],
@@ -117,8 +48,8 @@
     },
     {
       "type": "custom",
-      "id": "abfb38b2-7ec2-400b-a032-99b1c2440520",
-      "title": "test",
+      "id": "04a3455c-090a-46af-b48d-71cf8a48c299",
+      "title": "",
       "variables": [],
       "resources": [],
       "metadata": {
@@ -130,7 +61,7 @@
       },
       "status": "Draft",
       "html": "<div></div>",
-      "css": "body { color: blue }",
+      "css": "body { color: red }",
       "js": "const foo = 'new'",
       "slugHash": "",
       "mobileBlockContexts": [
@@ -140,8 +71,8 @@
     },
     {
       "type": "custom",
-      "id": "66ed8428-ddef-4ba2-b833-d9175e41749d",
-      "title": "",
+      "id": "bcfbd5f7-7ada-4ff4-b78a-30a58cd51dac",
+      "title": "tsttttttt",
       "variables": [],
       "resources": [],
       "metadata": {
