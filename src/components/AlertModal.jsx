@@ -19,7 +19,8 @@ function AlertModal({
     subtext,
     actions,
     openProjectId,
-    reset,
+    resetField,
+    unregister,
 }) {
     const dispatch = useDispatch()
 
@@ -34,6 +35,8 @@ function AlertModal({
         boxShadow: 24,
         p: 4,
     }
+    console.log('values', values)
+    console.log('openProjectId', openProjectId)
 
     const handleAction = (action) => {
         console.log('action', action)
@@ -44,7 +47,7 @@ function AlertModal({
             payload: { ...values.projects[openProjectId] },
         })
 
-        dispatch(removeProjectAndField(openProjectId, values, reset))
+        dispatch(removeProjectAndField(openProjectId, resetField, unregister))
 
         setAlert({ active: false, type: null })
     }
@@ -63,6 +66,7 @@ function AlertModal({
                 <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                     {subtext}
                 </Typography>
+
                 {actions.map((action) => {
                     return (
                         <Button

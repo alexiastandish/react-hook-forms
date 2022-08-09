@@ -10,7 +10,9 @@ const projectsSlice = createSlice({
         projectAddOne: (state, action) => {
             return projectsAdapter.addOne(state, action.payload)
         },
-        projectUpdateOne: projectsAdapter.updateOne,
+        projectUpdateOne: (state, action) => {
+            return projectsAdapter.updateOne(state, action.payload)
+        },
         projectRemoveOne: (state, action) => {
             return projectsAdapter.removeOne(state, action.payload)
         },
