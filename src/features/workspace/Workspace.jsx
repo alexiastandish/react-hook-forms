@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useForm, useWatch } from 'react-hook-form'
+import { useForm, useFieldArray, useWatch } from 'react-hook-form'
 import {
     selectAllBlocksArray,
     selectBlockEntities,
@@ -50,7 +50,9 @@ function Workspace() {
         getValues,
         handleSubmit,
         formState,
+        unregister,
         reset,
+        setValue,
     } = useForm({
         mode: 'onChange',
         name: 'projects',
@@ -60,12 +62,21 @@ function Workspace() {
     const { isDirty } = formState
 
     const values = getValues()
+
     const onSubmit = async (data) => {
         const submitProject = data.projects[openProjectId]
-        dispatch(saveBlockAndUpdateProject(submitProject, values, reset))
+        dispatch(
+            saveBlockAndUpdateProject(
+                submitProject,
+                values,
+                resetField,
+                reset,
+                unregister
+            )
+        )
     }
-
-    const fieldIds = Object.keys(values.projects)
+    console.log('values', values)
+    const fieldIds = (values?.projects && Object.keys(values.projects)) || []
 
     useEffect(() => {
         if (openProjectId && !fieldIds.includes(openProjectId)) {
@@ -78,6 +89,7 @@ function Workspace() {
                     id: project.id,
                 }
 
+                console.log('here')
                 return resetField(`projects.${project.id}`, {
                     defaultValue: { ...blockExists },
                     keepDirty: true,
@@ -98,6 +110,24 @@ function Workspace() {
         return proj.id === openProjectId
     })
 
+    console.log('formState', formState)
+    const openProjectDirtyFields = formState.dirtyFields?.projects
+        ? formState.dirtyFields?.projects?.[`${openProjectId}`]
+        : ''
+
+    console.log('values', values)
+
+    const fonts = values?.projects?.[`${openProjectId}`]?.fonts
+
+    const fontsLength = values?.projects?.[`${openProjectId}`]?.fonts?.length
+
+    // const renderFontButton =
+    //     fonts && fontsLength === 0
+    //         ? true
+    //         : fonts[fontsLength - 1].url
+    //         ? true
+    //         : false
+
     return (
         <Box sx={{ flexGrow: 1 }}>
             <DevTool control={control} placement="bottom-right" />
@@ -107,10 +137,11 @@ function Workspace() {
                 {openProjectIds.includes(openProjectId) &&
                     openProjectIds.map((projectId) => {
                         if (openProjectIds.includes(projectId)) {
+                            console.log('projectId', projectId)
                             return (
                                 <Tab
                                     label={
-                                        values.projects[`${projectId}`]
+                                        values?.projects?.[`${projectId}`]
                                             ?.title || 'Untitled'
                                     }
                                     key={projectId}
@@ -133,13 +164,65 @@ function Workspace() {
                         {...register(`projects.${openProjectId}.${activeFile}`)}
                     />
 
+                    {values?.projects?.[`${openProjectId}`]?.fonts &&
+                        values?.projects?.[`${openProjectId}`]?.fonts.map(
+                            (font, index) => {
+                                return (
+                                    <>
+                                        <input
+                                            key={`projects.${openProjectId}.fonts[${index}]`}
+                                            {...register(
+                                                `projects.${openProjectId}.fonts[${index}].url`
+                                            )}
+                                        />
+                                        <Button
+                                            onClick={() => {
+                                                const updatedFonts = [...fonts]
+                                                updatedFonts.splice(index, 1)
+
+                                                setValue(
+                                                    `projects.${openProjectId}.fonts`,
+                                                    updatedFonts
+                                                )
+                                            }}
+                                        >
+                                            x
+                                        </Button>
+                                    </>
+                                )
+                            }
+                        )}
+
                     <Button
                         onClick={() => {
+                            if (fonts) {
+                                return setValue(
+                                    `projects.${openProjectId}.fonts`,
+                                    [...fonts, { type: 'font', url: '' }]
+                                )
+                            } else {
+                                setValue(`projects.${openProjectId}.fonts`, [
+                                    { type: 'font', url: '' },
+                                ])
+                            }
+                        }}
+                    >
+                        add font field
+                    </Button>
+
+                    <Button
+                        onClick={() => {
+                            if (openProjectDirtyFields) {
+                                return setAlert({
+                                    type: 'unsaved',
+                                    active: true,
+                                })
+                            }
                             dispatch(
                                 removeProjectAndField(
                                     openProjectId,
-                                    values,
-                                    reset
+                                    resetField,
+                                    unregister
                                 )
                             )
                         }}
@@ -168,9 +251,12 @@ function Workspace() {
                     subtext={modalAlerts[alert.type].subtext}
                     actions={modalAlerts[alert.type].actions}
                     setAlert={setAlert}
+                    dirtyFields={formState.dirtyFields}
                     openProjectId={openProjectId}
                     values={values}
-                    reset={reset}
+                    resetField={resetField}
+                    unregister={unregister}
+                    // value={values.projects[`${openProjectId}`]}
                 />
             )}
         </Box>
