@@ -1,11 +1,14 @@
 import React from 'react'
+import Home from 'version2/components/Home'
 import './App.css'
-import Blocks from './features/blocks/Blocks'
+// import Blocks from './features/blocks/Blocks'
 
 function App() {
     return (
         <div className="App">
-            <Blocks />
+            {/* <Blocks /> */}
+
+            <Home />
         </div>
     )
 }

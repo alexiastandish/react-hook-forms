@@ -1,379 +1,79 @@
 {
-    "customBlocks": [
+  "customBlocks": [
+    {
+      "fonts": [
         {
-            "type": "custom",
-            "id": "f498223b-ffa8-429f-a7e4-21e29732fa32",
-            "title": "testing1",
-            "variables": [],
-            "resources": [],
-            "metadata": {
-                "isTest": false
-            },
-            "previewImageUrl": "",
-            "urls": {
-                "html": ""
-            },
-            "status": "Draft",
-            "html": "<div>test2</div>",
-            "css": "body { color: blue }",
-            "js": "const foo = 'new'",
-            "slugHash": "",
-            "mobileBlockContexts": [""],
-            "appActions": []
+          "type": "font",
+          "url": ""
         },
         {
-            "type": "custom",
-            "id": "b57e5606-998a-4f39-9928-71737bf4b2b2",
-            "title": "testing2",
-            "variables": [],
-            "resources": [],
-            "metadata": {
-                "isTest": false
-            },
-            "previewImageUrl": "",
-            "urls": {
-                "html": ""
-            },
-            "status": "Draft",
-            "html": "<div></div>",
-            "css": "body { color: blue }",
-            "js": "const foo = 'new'",
-            "slugHash": "",
-            "mobileBlockContexts": [""],
-            "appActions": []
-        },
-        {
-            "type": "custom",
-            "id": "b30a909e-d0b9-4020-ab8c-e3f8b2b7e211",
-            "title": "",
-            "variables": [],
-            "resources": [],
-            "metadata": {
-                "isTest": false
-            },
-            "previewImageUrl": "",
-            "urls": {
-                "html": ""
-            },
-            "status": "Draft",
-            "html": "<div>test</div>",
-            "css": "body { color: blue }",
-            "js": "const foo = 'new'",
-            "slugHash": "",
-            "mobileBlockContexts": [""],
-            "appActions": []
-        },
-        {
-            "type": "custom",
-            "id": "5cb8ca90-6496-4571-97ff-ece19bcb520a",
-            "title": "",
-            "variables": [],
-            "resources": [],
-            "metadata": {
-                "isTest": false
-            },
-            "previewImageUrl": "",
-            "urls": {
-                "html": ""
-            },
-            "status": "Draft",
-            "html": "<div>asdf</div>",
-            "css": "body { color: blue }",
-            "js": "const foo = 'new'",
-            "slugHash": "",
-            "mobileBlockContexts": [""],
-            "appActions": [],
-            "fonts": [
-                {
-                    "type": "font",
-                    "url": ""
-                }
-            ]
-        },
-        {
-            "type": "custom",
-            "id": "236cb0e3-121c-463b-a94d-27effd3cb8bc",
-            "title": "aaaaaa",
-            "variables": [],
-            "resources": [],
-            "metadata": {
-                "isTest": false
-            },
-            "previewImageUrl": "",
-            "urls": {
-                "html": ""
-            },
-            "status": "Draft",
-            "html": "<div></div>",
-            "css": "body { color: blue }",
-            "js": "const foo = 'new'",
-            "slugHash": "",
-            "mobileBlockContexts": [""],
-            "appActions": []
-        },
-        {
-            "type": "custom",
-            "id": "2ab66aff-1092-4dc2-899b-a675bcea965d",
-            "title": "a",
-            "variables": [],
-            "resources": [],
-            "metadata": {
-                "isTest": false
-            },
-            "previewImageUrl": "",
-            "urls": {
-                "html": ""
-            },
-            "status": "Draft",
-            "html": "<div></div>",
-            "css": "body { color: blue }",
-            "js": "const foo = 'new'",
-            "slugHash": "",
-            "mobileBlockContexts": [""],
-            "appActions": []
-        },
-        {
-            "type": "custom",
-            "id": "4b47f811-1251-4b7a-aac6-cf4d2e7dbddd",
-            "title": "abc",
-            "variables": [],
-            "resources": [],
-            "metadata": {
-                "isTest": false
-            },
-            "previewImageUrl": "",
-            "urls": {
-                "html": ""
-            },
-            "status": "Draft",
-            "html": "<div></div>",
-            "css": "body { color: blue }",
-            "js": "const foo = 'new'",
-            "slugHash": "",
-            "mobileBlockContexts": [""],
-            "appActions": []
-        },
-        {
-            "type": "custom",
-            "id": "c90eb1ce-7bf6-423e-aaca-08f83cd82b67",
-            "title": "",
-            "variables": [],
-            "resources": [],
-            "metadata": {
-                "isTest": false
-            },
-            "previewImageUrl": "",
-            "urls": {
-                "html": ""
-            },
-            "status": "Draft",
-            "html": "<div></div>",
-            "css": "body { color: blue }",
-            "js": "const foo = 'new'",
-            "slugHash": "",
-            "mobileBlockContexts": [""],
-            "appActions": []
-        },
-        {
-            "type": "custom",
-            "id": "5d12feae-33a8-437e-9827-10182f66f241",
-            "title": "",
-            "variables": [],
-            "resources": [],
-            "metadata": {
-                "isTest": false
-            },
-            "previewImageUrl": "",
-            "urls": {
-                "html": ""
-            },
-            "status": "Draft",
-            "html": "<div></div>",
-            "css": "body { color: blue }",
-            "js": "const foo = 'new'",
-            "slugHash": "",
-            "mobileBlockContexts": [""],
-            "appActions": []
-        },
-        {
-            "type": "custom",
-            "id": "4fb857ff-b5da-4dfb-9235-b97796b46b4f",
-            "title": "",
-            "variables": [],
-            "resources": [],
-            "metadata": {
-                "isTest": false
-            },
-            "previewImageUrl": "",
-            "urls": {
-                "html": ""
-            },
-            "status": "Draft",
-            "html": "<div></div>",
-            "css": "body { color: blue }",
-            "js": "const foo = 'new'",
-            "slugHash": "",
-            "mobileBlockContexts": [""],
-            "appActions": []
-        },
-        {
-            "type": "custom",
-            "id": "55dfb03b-3ce0-4ee5-9fb5-3b922c2444df",
-            "title": "asdfasdfasdf",
-            "variables": [],
-            "resources": [],
-            "metadata": {
-                "isTest": false
-            },
-            "previewImageUrl": "",
-            "urls": {
-                "html": ""
-            },
-            "status": "Draft",
-            "html": "<div></div>",
-            "css": "body { color: blue }",
-            "js": "const foo = 'new'",
-            "slugHash": "",
-            "mobileBlockContexts": [""],
-            "appActions": []
-        },
-        {
-            "type": "custom",
-            "id": "834d2236-5f61-49aa-b0e5-e52163f0c079",
-            "title": "abc",
-            "variables": [],
-            "resources": [],
-            "metadata": {
-                "isTest": false
-            },
-            "previewImageUrl": "",
-            "urls": {
-                "html": ""
-            },
-            "status": "Draft",
-            "html": "<div></div>",
-            "css": "body { color: blue }",
-            "js": "const foo = 'new'",
-            "slugHash": "",
-            "mobileBlockContexts": [""],
-            "appActions": []
-        },
-        {
-            "type": "custom",
-            "id": "99b7c4a6-6908-41df-aefc-c9f1ca4d7f2f",
-            "title": "",
-            "variables": [],
-            "resources": [],
-            "metadata": {
-                "isTest": false
-            },
-            "previewImageUrl": "",
-            "urls": {
-                "html": ""
-            },
-            "status": "Draft",
-            "html": "<div></div>",
-            "css": "body { color: blue }",
-            "js": "const foo = 'new'",
-            "slugHash": "",
-            "mobileBlockContexts": [""],
-            "appActions": []
-        },
-        {
-            "type": "custom",
-            "id": "925f8092-3bec-40a1-a537-0dd4baa7826e",
-            "title": "",
-            "variables": [],
-            "resources": [],
-            "metadata": {
-                "isTest": false
-            },
-            "previewImageUrl": "",
-            "urls": {
-                "html": ""
-            },
-            "status": "Draft",
-            "html": "<div></div>",
-            "css": "body { color: blue }",
-            "js": "const foo = 'new'",
-            "slugHash": "",
-            "mobileBlockContexts": [""],
-            "appActions": []
-        },
-        {
-            "type": "custom",
-            "id": "5aebf0ea-ad33-4e86-94fc-f657c1cdeb51",
-            "title": "asdfasdf",
-            "variables": [],
-            "resources": [],
-            "metadata": {
-                "isTest": false
-            },
-            "previewImageUrl": "",
-            "urls": {
-                "html": ""
-            },
-            "status": "Draft",
-            "html": "<div></div>asdfasdf",
-            "css": "body { color: dfdfdf }",
-            "js": "const foo = 'new'",
-            "slugHash": "",
-            "mobileBlockContexts": [""],
-            "appActions": []
-        },
-        {
-            "type": "custom",
-            "id": "3d0c5d99-8ec8-421e-a1a8-10da99929e43",
-            "title": "fonts",
-            "variables": [],
-            "resources": [],
-            "metadata": {
-                "isTest": false
-            },
-            "previewImageUrl": "",
-            "urls": {
-                "html": ""
-            },
-            "status": "Draft",
-            "html": "<div></div>",
-            "css": "body { color: blue }",
-            "js": "const foo = 'new'",
-            "slugHash": "",
-            "mobileBlockContexts": [""],
-            "appActions": [],
-            "fonts": [
-                {
-                    "type": "font",
-                    "url": "abc"
-                }
-            ]
-        },
-        {
-            "type": "custom",
-            "id": "6e033175-559c-4ec0-a95c-59d54eb56d12",
-            "title": "font2",
-            "variables": [],
-            "resources": [],
-            "metadata": {
-                "isTest": false
-            },
-            "previewImageUrl": "",
-            "urls": {
-                "html": ""
-            },
-            "status": "Draft",
-            "html": "<div></div>",
-            "css": "body { color: blue }",
-            "js": "const foo = 'new'",
-            "slugHash": "",
-            "mobileBlockContexts": [""],
-            "appActions": [],
-            "fonts": [
-                {
-                    "type": "font",
-                    "url": "abcdef"
-                }
-            ]
+          "type": "font",
+          "url": ""
         }
-    ]
+      ],
+      "html": "<h1>Hello </h1>",
+      "css": "body { color: red }",
+      "js": "const foo = 'bar'",
+      "id": "84912445-8a8d-41b1-8f7f-3b85ad22173a",
+      "key": "e48b3926-dea3-4e1a-a621-ad1cd6dc8ae4",
+      "metadata": {
+        "isTest": false
+      },
+      "mobileBlockContexts": [],
+      "previewImageUrl": "https://storage.googleapis.com/tapcart-hacks-assets/Screen%20Shot%202022-06-10%20at%2011.09.53%20AM.png",
+      "resources": [],
+      "slugHash": "e48b3926-dea3-4e1a-a621-ad1cd6dc8ae4",
+      "status": "Draft",
+      "title": "new custom block",
+      "type": "custom",
+      "urls": {
+        "html": "BiEYnhhzLR/sc7ReMrxeIUpJVR1/index.html"
+      },
+      "variables": []
+    },
+    {
+      "fonts": [
+        {
+          "type": "font",
+          "url": ""
+        },
+        {
+          "type": "font",
+          "url": ""
+        }
+      ],
+      "html": "<h1>Hello </h1>",
+      "css": "body { color: red }",
+      "js": "const foo = 'bar'",
+      "id": "109da6db-aea6-4751-be51-56d3b4a1af26",
+      "key": "ed2a42bf-672e-41af-b382-55689f19365f",
+      "metadata": {
+        "isTest": false
+      },
+      "mobileBlockContexts": [],
+      "previewImageUrl": "https://storage.googleapis.com/tapcart-hacks-assets/Screen%20Shot%202022-06-10%20at%2011.09.53%20AM.png",
+      "resources": [],
+      "slugHash": "ed2a42bf-672e-41af-b382-55689f19365f",
+      "status": "Draft",
+      "title": "new custom block",
+      "type": "custom",
+      "urls": {
+        "html": "BiEYnhhzLR/sc7ReMrxeIUpJVR1/index.html"
+      },
+      "variables": []
+    },
+    {
+      "fonts": [
+        {
+          "type": "font",
+          "url": ""
+        }
+      ],
+      "title": "",
+      "html": "",
+      "css": "",
+      "js": "",
+      "id": "fa267156-0bfc-42d7-8574-fef7116e4ba4"
+    }
+  ]
 }

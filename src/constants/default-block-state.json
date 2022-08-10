@@ -13,5 +13,6 @@
     "js": "const foo = 'new'",
     "slugHash": "",
     "mobileBlockContexts": [""],
-    "appActions": []
+    "appActions": [],
+    "fonts": []
 }

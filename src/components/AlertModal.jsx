@@ -35,13 +35,8 @@ function AlertModal({
         boxShadow: 24,
         p: 4,
     }
-    console.log('values', values)
-    console.log('openProjectId', openProjectId)
 
     const handleAction = (action) => {
-        console.log('action', action)
-        console.log('value', values)
-
         dispatch({
             type: action[0],
             payload: { ...values.projects[openProjectId] },

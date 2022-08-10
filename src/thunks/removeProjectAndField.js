@@ -42,7 +42,6 @@ const removeProjectAndField =
             keepValue: false,
         })
 
-        console.log('nextProjectId', nextProjectId)
         await dispatch(setOpenProjectId(nextProjectId || null))
         // const nextProjectIndex = getResetIndex(openProjectIndex)
         // const nextProject = Object.values(projects.entities).filter(

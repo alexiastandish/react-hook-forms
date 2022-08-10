@@ -6,7 +6,7 @@ import {
 import { blockAddOne, blockUpdateOne } from '../features/blocks/blocks-slice'
 
 const saveBlockAndUpdateProject =
-    (project, values, resetField, reset, unregister) =>
+    (project, values, resetField, reset, register, unregister) =>
     async (dispatch, getState) => {
         const {
             blocks,
@@ -17,20 +17,24 @@ const saveBlockAndUpdateProject =
 
         if (blocks.ids.includes(project.id)) {
             const updatedBlock = await updateCustomBlock(project)
+
             await dispatch(
                 blockUpdateOne({ id: updatedBlock.id, changes: updatedBlock })
             )
-            return resetField(`projects.${project.id}`, {
+            // console.log('updatedBlock', updatedBlock)
+            return resetField(`projects.${updatedBlock.id}`, {
                 defaultValue: { ...updatedBlock },
-                keepDirty: false,
-                keepTouched: false,
-                keepError: false,
+                keepDirty: true,
+                keepTouched: true,
+                keepError: true,
             })
         }
 
         try {
             const savedBlock = await saveNewBlock(project)
+
             await dispatch(blockAddOne(savedBlock))
+
             const activeProject = entities[openProjectId]
             await dispatch(
                 projectUpdateOne({
@@ -38,6 +42,7 @@ const saveBlockAndUpdateProject =
                     changes: { ...activeProject, customBlockId: savedBlock.id },
                 })
             )
+
             await dispatch(setOpenProjectId(savedBlock.id))
 
             resetField(`projects.${savedBlock.id}`, {
@@ -47,7 +52,7 @@ const saveBlockAndUpdateProject =
                 keepError: true,
             })
 
-            return unregister(`projects.${project.id}`, {
+            unregister(`projects.${project.id}`, {
                 keepDirty: false,
                 keepDefaultValue: false,
                 keepError: false,
@@ -56,7 +61,7 @@ const saveBlockAndUpdateProject =
                 keepValue: false,
             })
         } catch (error) {
-            console.log('error', error)
+            // console.log('error', error)
         }
     }
 

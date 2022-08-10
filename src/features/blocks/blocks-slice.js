@@ -37,6 +37,7 @@ export const blocksSlice = createSlice({
             })
             .addCase(fetchSavedBlocks.fulfilled, (state, action) => {
                 state.status = 'idle'
+                state.initialized = true
                 blocksAdapter.upsertMany(state, action.payload)
             })
     },
